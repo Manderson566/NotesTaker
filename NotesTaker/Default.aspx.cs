@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NotesTaker.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,8 +10,13 @@ namespace NotesTaker
 {
     public partial class Default : System.Web.UI.Page
     {
+        public List<Note> Notes;
         protected void Page_Load(object sender, EventArgs e)
         {
+            using (var db = new NoteContext())
+            {
+                Notes = db.Notes.ToList();
+            }
 
         }
     }
